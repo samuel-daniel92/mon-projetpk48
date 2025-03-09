@@ -1,0 +1,344 @@
+/* Variables */
+:root {
+    --sky-color: #87CEEB;
+    --ground-color: #4682B4;
+    --bird-color: #FFD700;
+    --obstacle-color: #2D3748;
+    --text-color: #FFFFFF;
+    --glow-color: rgba(135, 206, 235, 0.8);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: var(--sky-color);
+    font-family: 'Arial', sans-serif;
+}
+
+/* Conteneur principal */
+.game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--sky-color), #FFFFFF);
+}
+
+/* Ciel animé */
+.sky {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.clouds {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100"><path fill="rgba(255,255,255,0.7)" d="M0 60 Q50 40 100 60 T200 60 V100 H0 Z"/></svg>') repeat-x;
+    animation: cloudScroll 30s linear infinite;
+}
+
+.mountains {
+    position: absolute;
+    bottom: 100px;
+    width: 200%;
+    height: 200px;
+    background: linear-gradient(180deg, #2D3748, #4682B4);
+    clip-path: polygon(0 100%, 10% 60%, 20% 80%, 30% 50%, 40% 70%, 50% 40%, 60% 60%, 70% 80%, 80% 50%, 90% 70%, 100% 100%);
+    animation: mountainScroll 20s linear infinite;
+}
+
+@keyframes cloudScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes mountainScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Zone de jeu */
+.game-area {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+/* Oiseau */
+.bird {
+    position: absolute;
+    width: 60px;
+    height: 40px;
+    left: 150px;
+    top: 50%;
+    background: var(--bird-color);
+    border-radius: 50% 20% 20% 50%;
+    box-shadow: 0 0 20px var(--glow-color);
+    transition: transform 0.1s ease;
+    z-index: 3;
+}
+
+.bird::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 10px;
+    top: 5px;
+    left: -10px;
+    background: #FF4500;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+.bird::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 20px;
+    top: 10px;
+    right: -10px;
+    background: var(--bird-color);
+    border-radius: 50%;
+    animation: wingFlap 0.3s infinite alternate;
+}
+
+@keyframes wingFlap {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(30deg); }
+}
+
+/* Obstacles */
+.obstacles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.obstacle {
+    position: absolute;
+    background: var(--obstacle-color);
+    border-radius: 10px;
+    box-shadow: 0 0 15px var(--shadow-color);
+    transition: left 0.1s linear;
+}
+
+.rock {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #808080, #2D3748);
+}
+
+.lightning {
+    width: 20px;
+    height: 100px;
+    background: linear-gradient(180deg, #FFFF00, #FFD700);
+    clip-path: polygon(50% 0%, 70% 20%, 40% 40%, 60% 60%, 30% 80%, 50% 100%);
+    animation: flicker 0.2s infinite;
+}
+
+.drone {
+    width: 60px;
+    height: 40px;
+    background: #2D3748;
+    border-radius: 20px;
+    position: relative;
+}
+
+.drone::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: -10px;
+    left: 10px;
+    background: #FF4500;
+    border-radius: 50%;
+    animation: rotorSpin 0.1s infinite linear;
+}
+
+@keyframes rotorSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Sol */
+.ground {
+    position: absolute;
+    bottom: 0;
+    width: 200%;
+    height: 100px;
+    background: var(--ground-color);
+    animation: groundScroll 5s linear infinite;
+    z-index: 1;
+}
+
+@keyframes groundScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Score */
+.score-board {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    text-shadow: 0 0 10px var(--glow-color);
+    font-family: 'Orbitron', sans-serif;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.score-board span {
+    padding: 0;
+    background: none;
+    border-radius: 0;
+}
+
+/* Bouton de saut */
+.jump-button {
+    position: absolute;
+    bottom: 150px;
+    right: 50px;
+    width: 70px;
+    height: 70px;
+    background: var(--bird-color);
+    border: none;
+    border-radius: 50%;
+    color: #FFFFFF;
+    font-size: 2rem;
+    cursor: pointer;
+    box-shadow: 0 0 20px var(--glow-color);
+    transition: all 0.3s ease;
+    z-index: 4;
+}
+
+.jump-button:hover {
+    transform: scale(1.2) rotate(10deg);
+    box-shadow: 0 0 40px var(--glow-color);
+}
+
+.jump-button:active {
+    transform: scale(0.9);
+}
+
+/* Écran de démarrage */
+.start-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+    z-index: 5;
+}
+
+.start-screen h1 {
+    font-size: 4rem;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 20px var(--glow-color);
+    animation: pulse 2s infinite;
+}
+
+.start-screen p {
+    font-size: 1.5rem;
+}
+
+/* Écran de fin */
+.game-over-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+    z-index: 5;
+}
+
+.game-over-screen h1 {
+    font-size: 4rem;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 20px var(--glow-color);
+}
+
+.game-over-screen p {
+    font-size: 2rem;
+}
+
+#player-name {
+    margin: 20px 0;
+    padding: 10px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    color: #2D3748;
+    text-align: center;
+}
+
+#restart {
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    background: var(--primary-color);
+    border: none;
+    border-radius: 25px;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    box-shadow: 0 0 20px var(--glow-color);
+}
+
+#restart:hover {
+    transform: scale(1.2) rotate(5deg);
+    box-shadow: 0 0 40px var(--primary-color);
+}
+
+.top-scores {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.top-scores h3 {
+    font-size: 1.5rem;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 10px var(--glow-color);
+}
+
+#top-scores-list {
+    list-style: none;
+    padding: 0;
+    color: var(--text-color);
+    font-size: 1.2rem;
+}
+
+/* Animations */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}

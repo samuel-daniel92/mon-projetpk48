@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de Code Barre</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+</head>
+<body>
+    <div class="barcode-generator-container" role="region" aria-label="Générateur de code-barres">
+        <h1 class="barcode-title" aria-label="Titre du générateur">Générateur de Code Barre</h1>
+        <div class="barcode-input">
+            <input type="text" id="barcode-text" placeholder="Entrez votre texte ou numéro" aria-label="Entrez votre texte ou numéro">
+            <button id="generate-barcode" aria-label="Générer le code-barres"><i class="fas fa-barcode"></i> Générer</button>
+        </div>
+        <div class="barcode-display">
+            <svg id="barcode"></svg>
+        </div>
+        <button id="download-barcode" aria-label="Télécharger le code-barres" disabled><i class="fas fa-download"></i> Télécharger</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

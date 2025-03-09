@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronomètre Avancé</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="chrono-container" role="timer" aria-label="Chronomètre avancé">
+        <h1 class="chrono-title" aria-label="Titre du chronomètre">Chronomètre</h1>
+        <div class="chrono-dial">
+            <div class="chrono-display" id="timer-display">
+                <span id="hours" aria-label="Heures">00</span>:
+                <span id="minutes" aria-label="Minutes">00</span>:
+                <span id="seconds" aria-label="Secondes">00</span>.
+                <span id="milliseconds" aria-label="Millisecondes">000</span>
+            </div>
+        </div>
+        <div class="chrono-controls">
+            <button id="start" aria-label="Démarrer ou mettre en pause"><i class="fas fa-play"></i></button>
+            <button id="lap" aria-label="Enregistrer un tour" disabled><i class="fas fa-flag"></i></button>
+            <button id="reset" aria-label="Réinitialiser" disabled><i class="fas fa-undo"></i></button>
+            <button id="countdown-toggle" aria-label="Mode compte à rebours"><i class="fas fa-hourglass-start"></i></button>
+        </div>
+        <div class="countdown-input" id="countdown-input" style="display: none;">
+            <input type="number" id="countdown-hours" min="0" max="23" placeholder="H" aria-label="Heures">
+            <input type="number" id="countdown-minutes" min="0" max="59" placeholder="M" aria-label="Minutes">
+            <input type="number" id="countdown-seconds" min="0" max="59" placeholder="S" aria-label="Secondes">
+        </div>
+        <div class="laps-container">
+            <label for="lap-name">Nom du tour :</label>
+            <input type="text" id="lap-name" placeholder="Tour 1" aria-label="Nom du tour">
+            <select id="alarm-sound" aria-label="Son d’alarme">
+                <option value="beep-01a.mp3">Bip 1</option>
+                <option value="beep-02.mp3">Bip 2</option>
+                <option value="alarm-01.mp3">Alarme</option>
+            </select>
+            <ul class="laps-list" id="laps-list" aria-label="Liste des tours"></ul>
+        </div>
+    </div>
+    <audio id="countdown-alarm" preload="auto"></audio>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raccourcisseur de Lien</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="link-shortener-container" role="region" aria-label="Raccourcisseur de lien">
+        <h1 class="link-title" aria-label="Titre du raccourcisseur">Raccourcisseur de Lien</h1>
+        <div class="link-input">
+            <input type="url" id="original-url" placeholder="Entrez votre URL ici" aria-label="Entrez votre URL ici">
+            <button id="shorten-link" aria-label="Raccourcir le lien"><i class="fas fa-link"></i> Raccourcir</button>
+        </div>
+        <div class="link-result" id="link-result" aria-label="Lien raccourci">
+            <input type="text" id="shortened-url" readonly placeholder="Lien raccourci ici" aria-label="Lien raccourci">
+            <button id="copy-link" aria-label="Copier le lien" disabled><i class="fas fa-copy"></i></button>
+        </div>
+        <div class="link-history" id="link-history">
+            <h3>Historique</h3>
+            <ul id="history-list"></ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

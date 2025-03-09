@@ -1,0 +1,179 @@
+/* Variables CSS synchronisées avec la page principale */
+:root {
+    --bg-color: #F8FAFC;
+    --text-color: #4B5E6F;
+    --primary-color: #87CEEB;
+    --secondary-color: #4682B4;
+    --card-bg: #FFFFFF;
+    --shadow-color: rgba(0, 0, 0, 0.15);
+    --button-bg: #87CEEB;
+    --button-hover-bg: #4682B4;
+    --button-text: #FFFFFF;
+    --input-bg: rgba(255, 255, 255, 0.9);
+    --barcode-bg: #FFFFFF;
+}
+
+body.dark-mode {
+    --bg-color: #1A202C;
+    --text-color: #E2E8F0;
+    --primary-color: #63B3ED;
+    --secondary-color: #90CDF4;
+    --card-bg: #2D3748;
+    --shadow-color: rgba(255, 255, 255, 0.1);
+    --button-bg: #63B3ED;
+    --button-hover-bg: #90CDF4;
+    --button-text: #1A202C;
+    --input-bg: rgba(38, 50, 56, 0.9);
+    --barcode-bg: #2D3748;
+}
+
+/* Réinitialisation et styles globaux */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Conteneur principal */
+.barcode-generator-container {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 25px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 15px 40px var(--shadow-color);
+    backdrop-filter: blur(12px);
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* Titre */
+.barcode-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% { text-shadow: 0 0 5px var(--primary-color); }
+    50% { text-shadow: 0 0 15px var(--secondary-color); }
+}
+
+/* Champ de saisie */
+.barcode-input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+
+#barcode-text {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background: var(--input-bg);
+    color: var(--text-color);
+    font-size: 1rem;
+    box-shadow: inset 0 2px 5px var(--shadow-color);
+    transition: all 0.3s ease;
+}
+
+#barcode-text:focus {
+    outline: none;
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+#generate-barcode {
+    background: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+#generate-barcode:hover {
+    background: var(--button-hover-bg);
+    transform: scale(1.05);
+}
+
+/* Affichage du code-barres */
+.barcode-display {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#barcode {
+    width: 100%;
+    height: auto;
+    background: var(--barcode-bg);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    transition: background-color 0.5s ease;
+}
+
+/* Bouton Télécharger */
+#download-barcode {
+    width: 100%;
+    background: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    padding: 15px;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+#download-barcode:hover:not(:disabled) {
+    background: var(--button-hover-bg);
+    transform: scale(1.05);
+}
+
+#download-barcode:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .barcode-generator-container {
+        padding: 1.5rem;
+    }
+
+    .barcode-title {
+        font-size: 2rem;
+    }
+
+    .barcode-input {
+        flex-direction: column;
+    }
+
+    #generate-barcode {
+        width: 100%;
+    }
+}

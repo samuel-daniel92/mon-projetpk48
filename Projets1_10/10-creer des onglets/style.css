@@ -1,0 +1,228 @@
+/* Variables CSS synchronisées avec la page principale */
+:root {
+    --bg-color: #F8FAFC;
+    --text-color: #4B5E6F;
+    --primary-color: #87CEEB;
+    --secondary-color: #4682B4;
+    --card-bg: #FFFFFF;
+    --shadow-color: rgba(0, 0, 0, 0.15);
+    --button-bg: #87CEEB;
+    --button-hover-bg: #4682B4;
+    --button-text: #FFFFFF;
+    --input-bg: rgba(255, 255, 255, 0.9);
+}
+
+body.dark-mode {
+    --bg-color: #1A202C;
+    --text-color: #E2E8F0;
+    --primary-color: #63B3ED;
+    --secondary-color: #90CDF4;
+    --card-bg: #2D3748;
+    --shadow-color: rgba(255, 255, 255, 0.1);
+    --button-bg: #63B3ED;
+    --button-hover-bg: #90CDF4;
+    --button-text: #1A202C;
+    --input-bg: rgba(38, 50, 56, 0.9);
+}
+
+/* Réinitialisation et styles globaux */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Conteneur principal */
+.tab-creator-container {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 25px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 15px 40px var(--shadow-color);
+    backdrop-filter: blur(12px);
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* Titre */
+.tab-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% { text-shadow: 0 0 5px var(--primary-color); }
+    50% { text-shadow: 0 0 15px var(--secondary-color); }
+}
+
+/* Contrôles pour ajouter des onglets */
+.tab-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+
+#tab-name,
+#tab-content {
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background: var(--input-bg);
+    color: var(--text-color);
+    font-size: 1rem;
+    box-shadow: inset 0 2px 5px var(--shadow-color);
+    transition: all 0.3s ease;
+}
+
+#tab-name:focus,
+#tab-content:focus {
+    outline: none;
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+#tab-content {
+    resize: vertical;
+    min-height: 100px;
+}
+
+#add-tab {
+    background: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+#add-tab:hover {
+    background: var(--button-hover-bg);
+    transform: scale(1.05);
+}
+
+/* Statistiques */
+.tab-stats {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: var(--text-color);
+    transition: color 0.5s ease;
+}
+
+#tab-count {
+    color: var(--primary-color);
+}
+
+/* Conteneur des onglets */
+.tabs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tab {
+    background: var(--input-bg);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    overflow: hidden;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    cursor: move;
+}
+
+.tab.dragging {
+    opacity: 0.5;
+    transform: scale(0.95);
+}
+
+.tab-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: var(--primary-color);
+    color: var(--button-text);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.tab-header:hover {
+    background: var(--button-hover-bg);
+}
+
+.tab-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.tab-header .buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.tab-header button {
+    background: none;
+    border: none;
+    color: var(--button-text);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.tab-header button:hover {
+    transform: scale(1.2);
+}
+
+.tab-content {
+    padding: 10px;
+    display: none;
+    color: var(--text-color);
+    transition: color 0.5s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-added {
+    animation: fadeIn 0.5s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .tab-creator-container {
+        padding: 1.5rem;
+    }
+
+    .tab-title {
+        font-size: 2rem;
+    }
+}
