@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de Codes</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- Ajout de jsPDF pour le téléchargement PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="barcode-generator-container" role="region" aria-label="Générateur de codes">
+        <h1 class="barcode-title" aria-label="Titre du générateur">Générateur de Codes</h1>
+        <div class="barcode-input">
+            <input type="text" id="code-text" placeholder="Entrez votre texte ou numéro" aria-label="Entrez votre texte ou numéro">
+            <select id="code-type" aria-label="Type de code">
+                <option value="barcode">Code-barres</option>
+                <option value="qrcode">Code QR</option>
+            </select>
+            <input type="color" id="line-color" value="#000000" aria-label="Couleur des lignes">
+            <input type="color" id="bg-color" value="#FFFFFF" aria-label="Couleur de fond">
+            <button id="generate-code" aria-label="Générer le code"><i class="fas fa-qrcode"></i> Générer</button>
+        </div>
+        <div class="code-display">
+            <div id="code-output" class="code-output"></div>
+        </div>
+        <div class="code-actions">
+            <button id="download-png" aria-label="Télécharger en PNG" disabled><i class="fas fa-download"></i> PNG</button>
+            <button id="download-pdf" aria-label="Télécharger en PDF" disabled><i class="fas fa-file-pdf"></i> PDF</button>
+        </div>
+        <div class="code-history" id="code-history">
+            <h3>Historique</h3>
+            <ul id="history-list"></ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

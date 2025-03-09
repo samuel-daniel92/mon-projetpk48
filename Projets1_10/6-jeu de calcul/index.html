@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu de Calcul</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div class="math-game-container" role="region" aria-label="Jeu de calcul">
+        <h1 class="game-title" aria-label="Titre du jeu">Jeu de Calcul</h1>
+        <div class="difficulty-selection" id="difficulty-selection">
+            <button class="difficulty-btn" data-level="easy">Facile</button>
+            <button class="difficulty-btn" data-level="medium">Moyen</button>
+            <button class="difficulty-btn" data-level="hard">Difficile</button>
+            <button class="difficulty-btn" data-level="expert">Expert</button>
+        </div>
+        <div class="game-display" style="display: none;">
+            <div class="score-time">
+                <div class="score-progress">
+                    <span id="score">Score : 0</span>
+                    <div class="progress-bar"><div id="progress" class="progress-fill"></div></div>
+                </div>
+                <span id="timer">Temps : 30</span>
+            </div>
+            <div class="math-problem" id="math-problem">
+                <span id="problem-text">5 + 3 = </span>
+                <input type="number" id="user-answer" placeholder="?" aria-label="Votre réponse" step="any">
+            </div>
+            <button id="back-to-menu" aria-label="Retour au menu des difficultés"><i class="fas fa-arrow-left"></i> Retour</button>
+        </div>
+        <button id="start-game" aria-label="Démarrer le jeu" style="display: none;"><i class="fas fa-play"></i> Démarrer</button>
+        <div class="game-result" id="game-result" aria-label="Résultat du jeu"></div>
+        <div class="high-score" id="high-score">Meilleur score : <span id="best-score">0</span></div>
+        <div class="score-history" id="score-history">
+            <div class="history-header">
+                <h3>Historique des scores</h3>
+                <button id="clear-history" aria-label="Supprimer l’historique"><i class="fas fa-trash"></i></button>
+            </div>
+            <ul id="history-list"></ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

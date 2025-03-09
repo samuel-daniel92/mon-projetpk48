@@ -1,0 +1,364 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+
+/* Variables CSS synchronisées avec les autres projets */
+:root {
+    --bg-color: #F8FAFC;
+    --card-bg: #FFFFFF;
+    --text-color: #4B5E6F;
+    --primary-color: #87CEEB;
+    --secondary-color: #4682B4;
+    --shadow-color: rgba(0, 0, 0, 0.15);
+    --button-bg: #87CEEB;
+    --button-hover-bg: #4682B4;
+    --button-text: #FFFFFF;
+    --display-bg: rgba(255, 255, 255, 0.95);
+    --laps-bg: rgba(255, 255, 255, 0.9);
+}
+
+body.dark-mode {
+    --bg-color: #1A202C;
+    --card-bg: #2D3748;
+    --text-color: #E2E8F0;
+    --primary-color: #63B3ED;
+    --secondary-color: #90CDF4;
+    --shadow-color: rgba(255, 255, 255, 0.1);
+    --button-bg: #63B3ED;
+    --button-hover-bg: #90CDF4;
+    --button-text: #1A202C;
+    --display-bg: rgba(38, 50, 56, 0.95);
+    --laps-bg: rgba(38, 50, 56, 0.9);
+}
+
+/* Réinitialisation et styles globaux */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--bg-color);
+    transition: background-color 0.5s ease;
+}
+
+/* Chrono Container */
+.chrono-container {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 15px 40px var(--shadow-color);
+    backdrop-filter: blur(12px);
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Title */
+.chrono-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% { text-shadow: 0 0 5px var(--primary-color); }
+    50% { text-shadow: 0 0 15px var(--secondary-color); }
+}
+
+/* Dial */
+.chrono-dial {
+    width: 100%;
+    background: var(--display-bg);
+    border-radius: 15px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    box-shadow: inset 0 5px 15px var(--shadow-color);
+}
+
+.chrono-display {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    color: var(--text-color);
+    text-align: center;
+    transition: color 0.5s ease;
+}
+
+.chrono-display span {
+    min-width: 60px;
+    display: inline-block; /* Assure un espacement cohérent */
+}
+
+/* Controls */
+.chrono-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap; /* Permet aux boutons de passer à la ligne si nécessaire */
+}
+
+.chrono-controls button {
+    background: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chrono-controls button:hover:not(:disabled) {
+    background: var(--button-hover-bg);
+    transform: scale(1.1);
+}
+
+.chrono-controls button:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Countdown Input */
+.countdown-input {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap; /* Permet aux inputs de s'adapter sur petits écrans */
+}
+
+.countdown-input input {
+    width: 80px;
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    background: var(--display-bg);
+    color: var(--text-color);
+    text-align: center;
+    box-shadow: inset 0 2px 5px var(--shadow-color);
+    transition: all 0.3s ease;
+}
+
+.countdown-input input:focus {
+    outline: none;
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+/* Laps Container */
+.laps-container {
+    width: 100%;
+    text-align: center;
+}
+
+.laps-container label {
+    color: var(--text-color);
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#lap-name, #alarm-sound {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 10px;
+    background: var(--display-bg);
+    color: var(--text-color);
+    box-shadow: inset 0 2px 5px var(--shadow-color);
+    transition: all 0.3s ease;
+}
+
+.laps-list {
+    list-style: none;
+    max-height: 200px;
+    overflow-y: auto;
+    background: var(--laps-bg);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: inset 0 2px 5px var(--shadow-color);
+}
+
+.laps-list li {
+    padding: 10px;
+    color: var(--text-color);
+    font-size: 1rem;
+    border-bottom: 1px solid var(--shadow-color);
+    transition: background-color 0.3s ease;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.laps-list li:hover {
+    background: rgba(135, 206, 235, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .chrono-container {
+        width: 95%;
+        padding: 1.5rem;
+        max-width: 100%; /* Permet au conteneur de s'adapter */
+        border-radius: 15px;
+    }
+
+    .chrono-title {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        letter-spacing: 2px;
+    }
+
+    /* Dial */
+    .chrono-dial {
+        padding: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .chrono-display {
+        font-size: 2.5rem;
+    }
+
+    .chrono-display span {
+        min-width: 50px;
+    }
+
+    /* Controls */
+    .chrono-controls {
+        gap: 10px;
+        margin-bottom: 1rem;
+    }
+
+    .chrono-controls button {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+
+    /* Countdown Input */
+    .countdown-input {
+        gap: 8px;
+        margin-bottom: 1rem;
+    }
+
+    .countdown-input input {
+        width: 70px;
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    /* Laps Container */
+    .laps-container label {
+        font-size: 0.9rem;
+    }
+
+    #lap-name, #alarm-sound {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    .laps-list {
+        max-height: 150px;
+        padding: 8px;
+    }
+
+    .laps-list li {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .chrono-container {
+        padding: 1rem;
+        width: 90%;
+    }
+
+    .chrono-title {
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+        margin-bottom: 0.75rem;
+    }
+
+    /* Dial */
+    .chrono-dial {
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .chrono-display {
+        font-size: 2rem;
+    }
+
+    .chrono-display span {
+        min-width: 40px;
+    }
+
+    /* Controls */
+    .chrono-controls {
+        gap: 8px;
+        flex-direction: column; /* Les boutons passent en colonne */
+        align-items: center;
+    }
+
+    .chrono-controls button {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+    }
+
+    /* Countdown Input */
+    .countdown-input {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .countdown-input input {
+        width: 100%;
+        padding: 6px;
+        font-size: 0.85rem;
+    }
+
+    /* Laps Container */
+    .laps-container label {
+        font-size: 0.85rem;
+    }
+
+    #lap-name, #alarm-sound {
+        padding: 6px;
+        font-size: 0.85rem;
+    }
+
+    .laps-list {
+        max-height: 120px;
+        padding: 6px;
+    }
+
+    .laps-list li {
+        padding: 6px;
+        font-size: 0.85rem;
+    }
+}

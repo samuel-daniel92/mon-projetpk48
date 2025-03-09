@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculatrice Avancée</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator">
+        <div class="display">
+            <input type="text" id="result" readonly>
+            <div class="mode-toggle">
+                <button id="toggle-mode" aria-label="Basculer entre degrés et radians">Deg</button>
+            </div>
+        </div>
+        <div class="buttons">
+            <!-- Ligne 1 : Fonctions mémoire -->
+            <button class="btn memory" data-value="M+">M+</button>
+            <button class="btn memory" data-value="M-">M-</button>
+            <button class="btn memory" data-value="MR">MR</button>
+            <button class="btn memory" data-value="MC">MC</button>
+            <button class="btn clear" data-value="AC">AC</button>
+            <button class="btn delete" data-value="DEL">DEL</button>
+
+            <!-- Ligne 2 : Fonctions trigonométriques -->
+            <button class="btn func" data-value="sin">sin</button>
+            <button class="btn func" data-value="cos">cos</button>
+            <button class="btn func" data-value="tan">tan</button>
+            <button class="btn func" data-value="asin">arcsin</button>
+            <button class="btn func" data-value="acos">arccos</button>
+            <button class="btn func" data-value="atan">arctan</button>
+
+            <!-- Ligne 3 : Fonctions mathématiques -->
+            <button class="btn func" data-value="x²">x²</button>
+            <button class="btn func" data-value="√">√</button>
+            <button class="btn func" data-value="ln">ln</button>
+            <button class="btn func" data-value="log">log</button>
+            <button class="btn func" data-value="e^x">e^x</button>
+            <button class="btn func" data-value="!">!</button>
+
+            <!-- Ligne 4 : Chiffres et opérateurs -->
+            <button class="btn number" data-value="7">7</button>
+            <button class="btn number" data-value="8">8</button>
+            <button class="btn number" data-value="9">9</button>
+            <button class="btn operator" data-value="(">(</button>
+            <button class="btn operator" data-value=")">)</button>
+            <button class="btn operator" data-value="/">/</button>
+
+            <!-- Ligne 5 : Chiffres et opérateurs -->
+            <button class="btn number" data-value="4">4</button>
+            <button class="btn number" data-value="5">5</button>
+            <button class="btn number" data-value="6">6</button>
+            <button class="btn operator" data-value="*">×</button>
+            <button class="btn operator" data-value="%">%</button>
+            <button class="btn operator" data-value="-">-</button>
+
+            <!-- Ligne 6 : Chiffres et égal -->
+            <button class="btn number" data-value="1">1</button>
+            <button class="btn number" data-value="2">2</button>
+            <button class="btn number" data-value="3">3</button>
+            <button class="btn number" data-value="0">0</button>
+            <button class="btn number" data-value=".">.</button>
+            <button class="btn operator" data-value="+">+</button>
+
+            <!-- Ligne 7 : Constantes et égal -->
+            <button class="btn number" data-value="π">π</button>
+            <button class="btn equal" data-value="=">=</button>
+        </div>
+        <div class="history" id="history">
+            <h3>Historique</h3>
+            <ul id="history-list"></ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

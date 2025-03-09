@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>To Do List</title>
+</head>
+<body>
+    <div class="todo-container" role="application" aria-label="Liste de tâches">
+        <h1 class="todo-title" aria-label="Titre de la liste">To Do List</h1>
+        <div class="todo-input-container">
+            <input type="text" id="task-input" placeholder="Ajouter une tâche..." aria-label="Nouvelle tâche">
+            <select id="task-priority" aria-label="Priorité de la tâche">
+                <option value="low">Basse</option>
+                <option value="medium" selected>Moyenne</option>
+                <option value="high">Haute</option>
+            </select>
+            <button id="add-task" aria-label="Ajouter la tâche"><i class="fas fa-plus"></i></button>
+        </div>
+        <div class="todo-stats">
+            Tâches : <span id="total-tasks">0</span> | Terminées : <span id="completed-tasks">0</span>
+        </div>
+        <div class="todo-filters">
+            <button id="filter-all" class="active" aria-label="Afficher toutes les tâches">Toutes</button>
+            <button id="filter-completed" aria-label="Afficher les tâches terminées">Terminées</button>
+            <button id="filter-pending" aria-label="Afficher les tâches à faire">À faire</button>
+            <button id="clear-all" aria-label="Supprimer toutes les tâches"><i class="fas fa-trash-alt"></i> Tout supprimer</button>
+        </div>
+        <ul class="todo-list" id="task-list" aria-label="Liste des tâches"></ul>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
